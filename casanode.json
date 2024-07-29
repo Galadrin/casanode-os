@@ -1,0 +1,37 @@
+{
+	"notes" : [
+		"Some example builds for Raspberry Pi 4.",
+
+		"Please refer to the README file for instruction on how to build the image"
+	],
+	"sources" : [
+		{ "url": "git://git.yoctoproject.org/poky", "branch": "scarthgap", "rev": "scarthgap-5.0.2" },
+		{ "url": "git://git.openembedded.org/meta-openembedded", "branch": "scarthgap", "rev": "80e01188fa822d87d301ee71973c462d7a865493" },
+		{ "url": "git://git.yoctoproject.org/meta-raspberrypi", "branch": "scarthgap", "rev": "1918a27419dcd5e79954c0dc0edddcde91057a7e" },
+        { "url": "https://github.com/Galadrin/meta-casanode.git", "dir": "meta-casanode" }
+	],
+
+	"layers" : [
+		"poky/meta",
+		"poky/meta-poky",
+		"poky/meta-yocto-bsp",
+		"meta-openembedded/meta-oe",
+        "meta-raspberrypi"
+	],
+
+	"builds" : {
+
+		"raspberry-pi-4-casanode": {
+			"layers" : [
+					"meta-casanode"
+			],
+            "target" : "core-image-minimal",
+
+			"local.conf": [
+				"MACHINE                    = 'raspberrypi4'            ",
+				"ENABLE_UART                = '1'                       ",
+				"EXTRA_IMAGE_FEATURES      += 'read-only-rootfs'        "
+			]
+		}
+	}
+}
