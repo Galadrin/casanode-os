@@ -8,6 +8,7 @@
 		{ "url": "git://git.yoctoproject.org/poky", "branch": "scarthgap", "rev": "scarthgap-5.0.2" },
 		{ "url": "git://git.openembedded.org/meta-openembedded", "branch": "scarthgap", "rev": "80e01188fa822d87d301ee71973c462d7a865493" },
 		{ "url": "git://git.yoctoproject.org/meta-raspberrypi", "branch": "scarthgap", "rev": "1918a27419dcd5e79954c0dc0edddcde91057a7e" },
+		{ "url": "git://git.yoctoproject.org/meta-virtualization", "branch": "scarthgap", "rev": "6a80f140e387621f62964209a2e07d3bcfb125ce" },
         { "url": "https://github.com/Galadrin/meta-casanode.git", "dir": "meta-casanode" }
 	],
 
@@ -16,21 +17,28 @@
 		"poky/meta-poky",
 		"poky/meta-yocto-bsp",
 		"meta-openembedded/meta-oe",
-        "meta-raspberrypi"
+		"meta-openembedded/meta-filesystems",
+		"meta-openembedded/meta-python",
+		"meta-openembedded/meta-networking",
+		"meta-raspberrypi",
+		"meta-virtualization"
 	],
 
 	"builds" : {
 
 		"raspberry-pi-4-casanode": {
+			"notes": [
+				"Please refer to the README file for instruction on how to build the image"
+			],
 			"layers" : [
 					"meta-casanode"
 			],
-            "target" : "core-image-minimal",
+            "target" : "casanode-base-image",
 
 			"local.conf": [
 				"MACHINE                    = 'raspberrypi4'            ",
 				"ENABLE_UART                = '1'                       ",
-				"EXTRA_IMAGE_FEATURES      += 'read-only-rootfs'        "
+				"EXTRA_IMAGE_FEATURES      += 'read-only-rootfs debug-tweaks'        "
 			]
 		}
 	}

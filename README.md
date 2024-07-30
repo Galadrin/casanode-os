@@ -24,5 +24,5 @@ From casanode-os directory
 
 ```
 make run
-cooker cook ../casanode.json
+cooker cook ../casanode.json raspberry-pi-4-casanode
 ```
